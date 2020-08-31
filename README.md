@@ -19,10 +19,10 @@ A separate collection will be created for each API:
 
 
 ## Create environments
-For each of you dynatrace environments you want to use, add a postman environment via `manage environments -> add`:  
+For each of your dynatrace environments you want to use, add a postman environment via `manage environments -> add`:  
 ![Dynatrace API Postman Collections](pictures/manage-environments.png)
 
-The environment needs to variables:
+The environment needs two variables:
 * DT_HOST
   * URL to the environments
     * For managed: `your-dt-domain.com/e/Environment-ID`
@@ -36,5 +36,5 @@ The environment needs to variables:
 
 ## Request away!
 
-Now you can open a request and easily execute it against different dynatrace environments by selecting the environment on the top right:
+Now you can open any request and easily execute it against different dynatrace environments by selecting the environment on the top right:
 ![Dynatrace API Postman Collections](pictures/send-request.png)

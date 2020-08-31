@@ -1,0 +1,5045 @@
+{
+	"info": {
+		"_postman_id": "63b48971-c2b4-4aae-9f52-be1665372f3e",
+		"name": "Dynatrace Cluster API v2",
+		"description": "Dynatrace Managed exposes cluster-wide functionality via REST endpoints. This interactive documentation also acts as a REST client you can use to interact with Dynatrace Managed clusters. \n\nTo authorize, use the API Token generated in [Settings - API Tokens page](/cmc#cm/apiToken). The HTTP status code of the response shows the result of your request. The expected response code for a successful request is documented individually per REST endpoint. Additionally the following error response codes can occur in our REST interface:\n\n* 400 - Bad Request: Some request parameters are not correct. See response body for details.\n* 401 - Unauthorized: A valid authorization header is required but is missing.\n* 403 - Forbidden: Execution of request is not allowed, e.g. api-token is invalid.\n* 404 - Not Found: Endpoint does not exist or some entities could not be found.\n* 500 - Internal Server Error: See response body for details.\n* 556 - Upgrade in progress: Operation couldn't be performed during the upgrade.\n\nNotes about compatibility:\n* Operations marked as early adopter or preview may be changed in non-compatible ways, although we try to avoid this.\n* We may add new enum constants without incrementing the API version; thus, clients need to handle unknown enum constants gracefully.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "environments",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Gets the properties of the specified environment. | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the environment."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Successful operation.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Updates an existing environment or creates a new one. | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"trial\": \"<boolean>\",\n    \"state\": \"<string>\",\n    \"tags\": [\n        \"<string>\"\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id?createToken=false",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments",
+										":id"
+									],
+									"query": [
+										{
+											"key": "createToken",
+											"value": "false",
+											"description": "If true, a token with the permission 'Token management' is created when creating a new environment. This token is then returned in the response body. It can be used within the newly created environment to create other tokens for configuring this environment."
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the environment to update.\n\n If you set the ID in the body as well, it must match this ID."
+										}
+									]
+								},
+								"description": "If the environment with the specified ID does not exist, a new environment will be created."
+							},
+							"response": [
+								{
+									"name": "Success. The environment has been updated. Response doesn't have a body.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"example environment\",\n    \"state\": \"ENABLED\",\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"trial\": false\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id?createToken=false",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"query": [
+												{
+													"key": "createToken",
+													"value": "false"
+												}
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. The input is invalid.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"example environment\",\n    \"state\": \"ENABLED\",\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"trial\": false\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id?createToken=false",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"query": [
+												{
+													"key": "createToken",
+													"value": "false"
+												}
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success. The new environment has been created. The response body contains the ID, the name and a token with the 'Token management' permission.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"example environment\",\n    \"state\": \"ENABLED\",\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"trial\": false\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id?createToken=false",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"query": [
+												{
+													"key": "createToken",
+													"value": "false"
+												}
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Deletes the specified environment. An environment must be disabled before it can be deleted. | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the environment to be deleted."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Deleted. Response does not have a body.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. For example, if an environment is not disabled.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Creates a new tenant management token for an environment. | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"expiresIn\": {\n        \"value\": \"<long>\",\n        \"unit\": \"<string>\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id/tokenManagementToken",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments",
+										":id",
+										"tokenManagementToken"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the environment where the token is valid."
+										}
+									]
+								},
+								"description": "The newly created token will be owned by the same user who owns the token used for authentication of creation call."
+							},
+							"response": [
+								{
+									"name": "Success. The token has been created. The response body contains the token itself.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Token Management\",\n    \"expiresIn\": {\n        \"value\": 3600,\n        \"unit\": \"SECONDS\"\n    }\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id/tokenManagementToken",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id",
+												"tokenManagementToken"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Location",
+											"value": "non proident sint qui",
+											"description": "Token Id"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. The input is invalid.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Token Management\",\n    \"expiresIn\": {\n        \"value\": 3600,\n        \"unit\": \"SECONDS\"\n    }\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/environments/:id/tokenManagementToken",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"environments",
+												":id",
+												"tokenManagementToken"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lists all existing environments. | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/environments?nextPageKey=<string>&pageSize=<long>&sort=<string>&filter=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"environments"
+							],
+							"query": [
+								{
+									"key": "nextPageKey",
+									"value": "<string>",
+									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
+								},
+								{
+									"key": "pageSize",
+									"value": "<long>",
+									"description": "The desired amount of environments in a single response payload. \n\nThe maximal allowed page size is 1000. \n\nIf not set, 100 is used."
+								},
+								{
+									"key": "sort",
+									"value": "<string>",
+									"description": "The sort order. Possible sorts orders are:\n * 'name' (without quotes): Sort by name ascending.\n * '-name' (without quotes): Sort by name descending.\n * 'creationDate' (without quotes): Sort by creating date ascending.\n * '-creationDate' (without quotes): Sort by name descending.\n"
+								},
+								{
+									"key": "filter",
+									"value": "<string>",
+									"description": "Specifies the filter of the query. \n\nYou can set one or several of the following criteria:\n* Name: `name(string)`. The name can be either a substring or the full name of an environment. Case-insensitive.\n* Trial: `trial(true)` or `trial(false)`. Only includes trial environments if true is specified or only non-trial environments if false is specified.\n* State: `state(ENABLED)` or `state(DISABLED)`.\n* Tag: `tag(string)`. To filter by multiple tags by applying OR logic use `tag(string1,string2)`. To filter by multiple tags by applying AND logic use `tag(string1),tag(string2)`.\nTo set several criteria, separate them with a comma (`,`). Only results, matching **all** criteria, are included into response.\n"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful operation.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments?nextPageKey=<string>&pageSize=<long>&sort=<string>&filter=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "sort",
+											"value": "<string>"
+										},
+										{
+											"key": "filter",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Creates a new environment. | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"trial\": \"<boolean>\",\n    \"state\": \"<string>\",\n    \"tags\": [\n        \"<string>\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/environments?createToken=false",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"environments"
+							],
+							"query": [
+								{
+									"key": "createToken",
+									"value": "false",
+									"description": "If true, a token with the permission 'Token management' is created when creating a new environment. This token is then returned in the response body. It can be used within the newly created environment to create other tokens for configuring this environment."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success. The environment has been created and started. The response body contains the generated ID of the environment and a token with the 'Token management' permission. The location header contains the generated ID as well.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"example environment\",\n    \"state\": \"ENABLED\",\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"trial\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments?createToken=false",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments"
+									],
+									"query": [
+										{
+											"key": "createToken",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failed. The input is invalid.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"example environment\",\n    \"state\": \"ENABLED\",\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"trial\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/environments?createToken=false",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"environments"
+									],
+									"query": [
+										{
+											"key": "createToken",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "remoteaccess/requests",
+			"item": [
+				{
+					"name": "{request Id}",
+					"item": [
+						{
+							"name": "Get access request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests",
+										":requestId"
+									],
+									"variable": [
+										{
+											"key": "requestId",
+											"value": "<string>",
+											"description": "(Required) Request id param"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Successful",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"requestId\": \"amet enim voluptate laborum\",\n \"userId\": \"minim consectetur cupidatat\",\n \"reason\": \"aliqua adipisicing dolore tempor\",\n \"requestedDays\": 5415983,\n \"role\": \"devops-user\",\n \"createdTimestamp\": 21332070,\n \"expirationTimestamp\": -58898490,\n \"state\": \"PENDING\",\n \"stateModifiedByUser\": \"nostrud\"\n}"
+								},
+								{
+									"name": "Bad request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Approving remote access request is disabled",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Change state of access request",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"state\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests",
+										":requestId",
+										"state"
+									],
+									"variable": [
+										{
+											"key": "requestId",
+											"value": "<string>",
+											"description": "(Required) Request id param"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Operation failed",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Access request not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Access request was found, but it's already expired",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Bad request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Approving remote access request is disabled",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests/:requestId/state",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"remoteaccess",
+												"requests",
+												":requestId",
+												"state"
+											],
+											"variable": [
+												{
+													"key": "requestId"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Get all access requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"remoteaccess",
+								"requests"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"requestId\": \"ea\",\n  \"userId\": \"mollit dolor amet\",\n  \"reason\": \"ut\",\n  \"requestedDays\": 36382004,\n  \"role\": \"devops-admin\",\n  \"createdTimestamp\": 61887976,\n  \"expirationTimestamp\": -97731038,\n  \"state\": \"REJECTED\",\n  \"stateModifiedByUser\": \"est proident qui minim\"\n },\n {\n  \"requestId\": \"magna commodo labore occaecat dolor\",\n  \"userId\": \"proident enim eu ex\",\n  \"reason\": \"incididunt qui ex do\",\n  \"requestedDays\": -50652383,\n  \"role\": \"devops-admin\",\n  \"createdTimestamp\": 79649469,\n  \"expirationTimestamp\": -16932989,\n  \"state\": \"REJECTED\",\n  \"stateModifiedByUser\": \"deserunt ut voluptate\"\n }\n]"
+						},
+						{
+							"name": "Approving remote access request is disabled",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Grant remote access permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"remoteaccess",
+								"requests"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Operation failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Mission Control is unavailable",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"code": 513,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Successfully created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"requestId\": \"amet enim voluptate laborum\",\n \"userId\": \"minim consectetur cupidatat\",\n \"reason\": \"aliqua adipisicing dolore tempor\",\n \"requestedDays\": 5415983,\n \"role\": \"devops-user\",\n \"createdTimestamp\": 21332070,\n \"expirationTimestamp\": -58898490,\n \"state\": \"PENDING\",\n \"stateModifiedByUser\": \"nostrud\"\n}"
+						},
+						{
+							"name": "Approving remote access request is disabled",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Invalid parameters",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": \"<string>\",\n    \"reason\": \"<string>\",\n    \"requestedDays\": \"<integer>\",\n    \"role\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/remoteaccess/requests",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"remoteaccess",
+										"requests"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "cluster Config/user Sessions",
+			"item": [
+				{
+					"name": "Get user sessions configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"clusterConfig",
+								"userSessions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"clusterConfig",
+										"userSessions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"automaticLogoutDto\": {\n  \"logoutInactiveUsersEnabled\": true,\n  \"userInactivityTimeout\": 900\n },\n \"concurrentSessionPolicyDto\": {\n  \"adminLimit\": -63583478,\n  \"userLimit\": -62788875\n }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user sessions configuration",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"automaticLogoutDto\": {\n        \"logoutInactiveUsersEnabled\": false,\n        \"userInactivityTimeout\": 7266956\n    },\n    \"concurrentSessionPolicyDto\": {\n        \"adminLimit\": -68709282,\n        \"userLimit\": -86974642\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"clusterConfig",
+								"userSessions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"automaticLogoutDto\": {\n        \"logoutInactiveUsersEnabled\": true,\n        \"userInactivityTimeout\": 900\n    },\n    \"concurrentSessionPolicyDto\": {\n        \"adminLimit\": -63583478,\n        \"userLimit\": -62788875\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"clusterConfig",
+										"userSessions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Wrong parameters",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"automaticLogoutDto\": {\n        \"logoutInactiveUsersEnabled\": true,\n        \"userInactivityTimeout\": 900\n    },\n    \"concurrentSessionPolicyDto\": {\n        \"adminLimit\": -63583478,\n        \"userLimit\": -62788875\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"clusterConfig",
+										"userSessions"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Configuration update failed",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"automaticLogoutDto\": {\n        \"logoutInactiveUsersEnabled\": true,\n        \"userInactivityTimeout\": 900\n    },\n    \"concurrentSessionPolicyDto\": {\n        \"adminLimit\": -63583478,\n        \"userLimit\": -62788875\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/clusterConfig/userSessions",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"clusterConfig",
+										"userSessions"
+									]
+								}
+							},
+							"status": "Not Extended (RFC 2774)",
+							"code": 510,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "user Sessions",
+			"item": [
+				{
+					"name": "Get user sessions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"userSessions"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "<string>",
+									"description": "User ID (optional)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Operation failed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"creationTime\": 4209910,\n  \"loginType\": \"SSO_MANAGED\",\n  \"nodeId\": 79938590,\n  \"sessionId\": \"dolore deserunt dolor\",\n  \"tenantUuid\": \"dolor ullamco ad quis\",\n  \"userId\": \"Excepteur nisi sit\",\n  \"lastAccessedTimestamp\": -90118279,\n  \"device\": \"dolor nisi ut exercitation est\",\n  \"ip\": \"do \"\n },\n {\n  \"creationTime\": -14458354,\n  \"loginType\": \"SSO_MANAGED\",\n  \"nodeId\": 54520718,\n  \"sessionId\": \"dolor anim cillum pariatur eu\",\n  \"tenantUuid\": \"dolor nisi in in\",\n  \"userId\": \"commodo id\",\n  \"lastAccessedTimestamp\": 22238769,\n  \"device\": \"tempor veniam\",\n  \"ip\": \"adipisicing amet Excepteur dolor ex\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Remove user sessions for a given user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"userSessions"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "<string>",
+									"description": "User ID (mandatory)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Failed to invalidate sessions",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Extended (RFC 2774)",
+							"code": 510,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad request. User id must be filled in.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "User sessions not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Operation failed",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/userSessions?userId=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"userSessions"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "active Gates",
+			"item": [
+				{
+					"name": "{ag Id}",
+					"item": [
+						{
+							"name": "update Jobs",
+							"item": [
+								{
+									"name": "{job Id}",
+									"item": [
+										{
+											"name": "Gets the parameters of the specified update job | maturity=EARLY_ADOPTER",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs",
+														":jobId"
+													],
+													"variable": [
+														{
+															"key": "agId",
+															"value": "<string>",
+															"description": "(Required) The ID of the required ActiveGate."
+														},
+														{
+															"key": "jobId",
+															"value": "<string>",
+															"description": "(Required) A unique identifier for a update-job of ActiveGate."
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"cluster",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not found. See response body for details.",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"cluster",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Deletes the specified update job | maturity=EARLY_ADOPTER",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs",
+														":jobId"
+													],
+													"variable": [
+														{
+															"key": "agId",
+															"value": "<string>",
+															"description": "(Required) The ID of the required ActiveGate."
+														},
+														{
+															"key": "jobId",
+															"value": "<string>",
+															"description": "(Required) A unique identifier for a update-job of ActiveGate."
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Failed. The input is invalid.",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"cluster",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not found. See response body for details.",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"cluster",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Success. The update-job have been deleted. Response doesn't have a body.",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"cluster",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Lists update jobs for the specified ActiveGate | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"activeGates",
+												":agId",
+												"updateJobs"
+											],
+											"query": [
+												{
+													"key": "from",
+													"value": "<string>",
+													"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one week is used (`now-1w`). \n\nMaximum timeframe is 31 days."
+												},
+												{
+													"key": "to",
+													"value": "<string>",
+													"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+												},
+												{
+													"key": "startVersionCompareType",
+													"value": "EQUAL",
+													"description": "Filters the resulting set of update jobs by the specified initial version. \n\n Specify the comparison operator here."
+												},
+												{
+													"key": "startVersion",
+													"value": "<string>",
+													"description": "Filters the resulting set of update-jobs by the initial version (required format `<major>.<minor>.<revision>`)."
+												},
+												{
+													"key": "updateType",
+													"value": "<string>",
+													"description": "Filters the resulting set of update-jobs by the update type."
+												},
+												{
+													"key": "targetVersionCompareType",
+													"value": "EQUAL",
+													"description": "Filters the resulting set of update jobs by the specified target version. \n\n Specify the comparison operator here."
+												},
+												{
+													"key": "targetVersion",
+													"value": "<string>",
+													"description": "Filters the resulting set of update-jobs by the target version (required format `<major>.<minor>.<revision>`)."
+												}
+											],
+											"variable": [
+												{
+													"key": "agId",
+													"value": "<string>",
+													"description": "(Required) The ID of the required ActiveGate."
+												}
+											]
+										},
+										"description": "The job can update the ActiveGate to the specified version or the latest available one."
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "<string>"
+														},
+														{
+															"key": "to",
+															"value": "<string>"
+														},
+														{
+															"key": "startVersionCompareType",
+															"value": "EQUAL"
+														},
+														{
+															"key": "startVersion",
+															"value": "<string>"
+														},
+														{
+															"key": "updateType",
+															"value": "<string>"
+														},
+														{
+															"key": "targetVersionCompareType",
+															"value": "EQUAL"
+														},
+														{
+															"key": "targetVersion",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not found. See response body for details.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs"
+													],
+													"query": [
+														{
+															"key": "from",
+															"value": "<string>"
+														},
+														{
+															"key": "to",
+															"value": "<string>"
+														},
+														{
+															"key": "startVersionCompareType",
+															"value": "EQUAL"
+														},
+														{
+															"key": "startVersion",
+															"value": "<string>"
+														},
+														{
+															"key": "updateType",
+															"value": "<string>"
+														},
+														{
+															"key": "targetVersionCompareType",
+															"value": "EQUAL"
+														},
+														{
+															"key": "targetVersion",
+															"value": "<string>"
+														}
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Creates a new update job for the specified ActiveGate | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json; charset=utf-8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"targetVersion\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"activeGates",
+												":agId",
+												"updateJobs"
+											],
+											"variable": [
+												{
+													"key": "agId",
+													"value": "<string>",
+													"description": "(Required) The ID of the required ActiveGate."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Failed. The input is invalid.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"targetVersion\": \"1.190.0.20200301-130000\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs"
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Success. The update-job have been created.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"targetVersion\": \"1.190.0.20200301-130000\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs"
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Validates the payload for the `POST /activeGates/{agId}/updateJobs` request. | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json; charset=utf-8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"targetVersion\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/validator",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"activeGates",
+												":agId",
+												"updateJobs",
+												"validator"
+											],
+											"variable": [
+												{
+													"key": "agId",
+													"value": "<string>",
+													"description": "(Required) The ID of the required ActiveGate."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Failed. The input is invalid.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"targetVersion\": \"1.190.0.20200301-130000\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/validator",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs",
+														"validator"
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Validated. The submitted update-job is valid. Response doesn't have a body.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"targetVersion\": \"1.190.0.20200301-130000\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId/updateJobs/validator",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"activeGates",
+														":agId",
+														"updateJobs",
+														"validator"
+													],
+													"variable": [
+														{
+															"key": "agId"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Gets the details of the specified ActiveGate | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"activeGates",
+										":agId"
+									],
+									"variable": [
+										{
+											"key": "agId",
+											"value": "<string>",
+											"description": "(Required) The ID of the required ActiveGate."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not found. See response body for details.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"activeGates",
+												":agId"
+											],
+											"variable": [
+												{
+													"key": "agId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/:agId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"activeGates",
+												":agId"
+											],
+											"variable": [
+												{
+													"key": "agId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lists all available ActiveGates | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates?hostname=<string>&osType=<string>&networkAddress=<string>&type=<string>&networkZone=<string>&updateStatus=<string>&versionCompareType=EQUAL&version=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"activeGates"
+							],
+							"query": [
+								{
+									"key": "hostname",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the name of the host it's running on. \n\n You can specify a partial name. In that case, the `CONTAINS` operator is used."
+								},
+								{
+									"key": "osType",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the OS type of the host it's running on."
+								},
+								{
+									"key": "networkAddress",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the network address. \n\n You can specify a partial address. In that case, the `CONTAINS` operator is used."
+								},
+								{
+									"key": "type",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the ActiveGate type."
+								},
+								{
+									"key": "networkZone",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the network zone. \n\n You can specify a partial name. In that case, the `CONTAINS` operator is used."
+								},
+								{
+									"key": "updateStatus",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the auto-update status."
+								},
+								{
+									"key": "versionCompareType",
+									"value": "EQUAL",
+									"description": "Filters the resulting set of ActiveGates by the specified version. \n\n Specify the comparison operator here."
+								},
+								{
+									"key": "version",
+									"value": "<string>",
+									"description": "Filters the resulting set of ActiveGates by the specified version. \n\n Specify the version in `<major>.<minor>.<revision>` format (for example, `1.195.0`) here."
+								}
+							]
+						},
+						"description": "The response includes all ActiveGates that are currently connected to the environment or have been connected during last 2 hours."
+					},
+					"response": [
+						{
+							"name": "Failed. The input is invalid.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates?hostname=<string>&osType=<string>&networkAddress=<string>&type=<string>&networkZone=<string>&updateStatus=<string>&versionCompareType=EQUAL&version=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"activeGates"
+									],
+									"query": [
+										{
+											"key": "hostname",
+											"value": "<string>"
+										},
+										{
+											"key": "osType",
+											"value": "<string>"
+										},
+										{
+											"key": "networkAddress",
+											"value": "<string>"
+										},
+										{
+											"key": "type",
+											"value": "<string>"
+										},
+										{
+											"key": "networkZone",
+											"value": "<string>"
+										},
+										{
+											"key": "updateStatus",
+											"value": "<string>"
+										},
+										{
+											"key": "versionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "version",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates?hostname=<string>&osType=<string>&networkAddress=<string>&type=<string>&networkZone=<string>&updateStatus=<string>&versionCompareType=EQUAL&version=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"activeGates"
+									],
+									"query": [
+										{
+											"key": "hostname",
+											"value": "<string>"
+										},
+										{
+											"key": "osType",
+											"value": "<string>"
+										},
+										{
+											"key": "networkAddress",
+											"value": "<string>"
+										},
+										{
+											"key": "type",
+											"value": "<string>"
+										},
+										{
+											"key": "networkZone",
+											"value": "<string>"
+										},
+										{
+											"key": "updateStatus",
+											"value": "<string>"
+										},
+										{
+											"key": "versionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "version",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "List ActiveGates with update jobs | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"activeGates",
+								"updateJobs"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "<string>",
+									"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one day is used (`now-1d`). \n\nMaximum timeframe is 31 days."
+								},
+								{
+									"key": "to",
+									"value": "<string>",
+									"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+								},
+								{
+									"key": "startVersionCompareType",
+									"value": "EQUAL",
+									"description": "Filters the resulting set of update jobs by the specified initial version. \n\n Specify the comparison operator here."
+								},
+								{
+									"key": "startVersion",
+									"value": "<string>",
+									"description": "Filters the resulting set of update-jobs by the initial version (required format `<major>.<minor>.<revision>`)."
+								},
+								{
+									"key": "updateType",
+									"value": "<string>",
+									"description": "Filters the resulting set of update-jobs by the update type."
+								},
+								{
+									"key": "targetVersionCompareType",
+									"value": "EQUAL",
+									"description": "Filters the resulting set of update jobs by the specified target version. \n\n Specify the comparison operator here."
+								},
+								{
+									"key": "targetVersion",
+									"value": "<string>",
+									"description": "Filters the resulting set of update-jobs by the target version (required format `<major>.<minor>.<revision>`)."
+								}
+							]
+						},
+						"description": "The response includes ActiveGates that have both completed (successful and failed) jobs and jobs in progress."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"activeGates",
+										"updateJobs"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "startVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "startVersion",
+											"value": "<string>"
+										},
+										{
+											"key": "updateType",
+											"value": "<string>"
+										},
+										{
+											"key": "targetVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "targetVersion",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failed. The input is invalid.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/activeGates/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"activeGates",
+										"updateJobs"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "startVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "startVersion",
+											"value": "<string>"
+										},
+										{
+											"key": "updateType",
+											"value": "<string>"
+										},
+										{
+											"key": "targetVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "targetVersion",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "network Zones",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Gets parameters of the specified network zone | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"networkZones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the required network zone."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Updates an existing network zone or creates a new one | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"networkZones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the network zone to be updated. \n\n If you set the ID in the body as well, it must match this ID. \n\n The ID is not case sensitive. Dynatrace stores the ID in lowercase."
+										}
+									]
+								},
+								"description": "If the network zone with the specified ID does not exist, a new network zone is created. \n\n The ID is not case sensitive. Dynatrace stores the ID in lowercase."
+							},
+							"response": [
+								{
+									"name": "Success. The network zone has been updated. Response doesn't have a body.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. The input is invalid.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success. The new network zone has been created. The response body contains the ID of the new network zone.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Deletes the specified network zone | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"networkZones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the network zone to be deleted."
+										}
+									]
+								},
+								"description": "You can only delete an empty network zone (a zone that no ActiveGate or OneAgent is using). \n\n If the network zone is used as an alternative zone for any OneAgent, it will be automatically removed from the list of possible alternatives."
+							},
+							"response": [
+								{
+									"name": "Failed. See error message in the response body for details.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Deleted. Response doesn't have a body.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lists all existing network zones | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"networkZones"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/networkZones",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"networkZones"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "synthetic",
+			"item": [
+				{
+					"name": "locations",
+					"item": [
+						{
+							"name": "{location Id}",
+							"item": [
+								{
+									"name": "Gets properties of the specified cluster location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the required cluster location."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success. The response contains parameters of the synthetic cluster location.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Updates the specified private synthetic cluster location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json; charset=utf-8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"regionCode\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the private synthetic cluster location to be updated."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "default response",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"regionCode\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Deletes the specified private synthetic cluster location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the private synthetic cluster location to be deleted."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "default response",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"cluster",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "Internal Server Error",
+											"code": 500,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Lists all cluster private synthetic locations | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"synthetic",
+										"locations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"locations"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Creates a new private synthetic cluster location | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"regionCode\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"synthetic",
+										"locations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"regionCode\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/locations",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"locations"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "nodes",
+					"item": [
+						{
+							"name": "Lists all synthetic cluster nodes | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/nodes",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"synthetic",
+										"nodes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/nodes",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"nodes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Lists properties of the specified synthetic cluster node | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/nodes/:nodeId",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"synthetic",
+										"nodes",
+										":nodeId"
+									],
+									"variable": [
+										{
+											"key": "nodeId",
+											"value": "<string>",
+											"description": "(Required) The ID of the required synthetic cluster node."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/synthetic/nodes/:nodeId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"synthetic",
+												"nodes",
+												":nodeId"
+											],
+											"variable": [
+												{
+													"key": "nodeId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "tokens",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Lists token metadata by token ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the required token."
+										}
+									]
+								},
+								"description": "The token itself is **not** exposed."
+							},
+							"response": [
+								{
+									"name": "Failed. The requested token has not been found.",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Updates the specified token",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"revoked\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the token to be updated. \n\n You can't update the token you're using for authentication of the request."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success. The token has been updated.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"revoked\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. You can't update the token you're using for authentication of the request.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"revoked\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. The requested token has not been found.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"revoked\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Deletes the specified token",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) The ID of the token to be deleted. Can either be the public identifier or the secret.\n\n You can't delete the token you're using for authentication of the request."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Failed. The requested token has not been found.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Failed. You can't delete the token you're using for authentication of the request.",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"cluster",
+												"v2",
+												"tokens",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lists available tokens in your environment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens?limit=1000&user=<string>&permissions=<string>&from=<long>&to=<long>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"tokens"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1000",
+									"description": "Limits the maximum number of returned tokens. \n\n If not set the value of `1000` is used. \n\n Maximum value is 1000000."
+								},
+								{
+									"key": "user",
+									"value": "<string>",
+									"description": "Filters the resulting set of tokens by user, who owns the token."
+								},
+								{
+									"key": "permissions",
+									"value": "<string>",
+									"description": "Filters the resulting set of tokens by permissions, assigned to the token. \n\n You can specify several permissions in the following format: `permissions=permission1&permissions=permission2`. The token must have *all* the specified permissions."
+								},
+								{
+									"key": "from",
+									"value": "<long>",
+									"description": "Last used after this timestamp (UTC milliseconds)."
+								},
+								{
+									"key": "to",
+									"value": "<long>",
+									"description": "Last used before this timestamp (UTC milliseconds)."
+								}
+							]
+						},
+						"description": "You can narrow down the output by adding parameters. The token has to match *all* the specified parameters. \n\n You can also specify the limit of returned tokens.\n\n **This list may contain tokens which were created automatically** (e.g. InstallerDownload, Mobile, ...) and are not visible on the `Settings` page. Deleting those might have unintended side-effects as they might still be in use."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens?limit=1000&user=<string>&permissions=<string>&from=<long>&to=<long>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1000"
+										},
+										{
+											"key": "user",
+											"value": "<string>"
+										},
+										{
+											"key": "permissions",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<long>"
+										},
+										{
+											"key": "to",
+											"value": "<long>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Creates a new token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ],\n    \"expiresIn\": {\n        \"value\": \"<long>\",\n        \"unit\": \"<string>\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"tokens"
+							]
+						},
+						"description": "The newly created token will be owned by the same user who owns the token used for authentication of the call."
+					},
+					"response": [
+						{
+							"name": "Failed. The input is invalid. Response body provides details.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ],\n    \"expiresIn\": {\n        \"value\": \"<long>\",\n        \"unit\": \"<string>\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success. The token has been created. The response body contains the token itself.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"scopes\": [\n        \"<string>\"\n    ],\n    \"expiresIn\": {\n        \"value\": \"<long>\",\n        \"unit\": \"<string>\"\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Location",
+									"value": "non proident sint qui",
+									"description": "Token Id"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Lists token metadata by token itself",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/lookup",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"tokens",
+								"lookup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"abcdefjhij1234567890\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/cluster/v2/tokens/lookup",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"cluster",
+										"v2",
+										"tokens",
+										"lookup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Lists all available versions of ActiveGate installer | maturity=EARLY_ADOPTER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{DT_HOST}}/api/cluster/v2/deployment/installer/gateway/versions/:osType",
+					"protocol": "https",
+					"host": [
+						"{{DT_HOST}}"
+					],
+					"path": [
+						"api",
+						"cluster",
+						"v2",
+						"deployment",
+						"installer",
+						"gateway",
+						"versions",
+						":osType"
+					],
+					"variable": [
+						{
+							"key": "osType",
+							"value": "<string>",
+							"description": "(Required) The operating system of the installer."
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success. The payload contains the available versions.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/deployment/installer/gateway/versions/:osType",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"deployment",
+								"installer",
+								"gateway",
+								"versions",
+								":osType"
+							],
+							"variable": [
+								{
+									"key": "osType"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"availableVersions\": [\n  \"occaecat in nulla reprehenderit voluptate\",\n  \"\"\n ]\n}"
+				},
+				{
+					"name": "Not found. See the response body for details.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/cluster/v2/deployment/installer/gateway/versions/:osType",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"cluster",
+								"v2",
+								"deployment",
+								"installer",
+								"gateway",
+								"versions",
+								":osType"
+							],
+							"variable": [
+								{
+									"key": "osType"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"error\": {\n  \"constraintViolations\": [\n   {\n    \"parameterLocation\": \"PAYLOAD_BODY\",\n    \"location\": \"mollit nulla\",\n    \"message\": \"tempor id nisi\",\n    \"path\": \"aliqua dolore\"\n   },\n   {\n    \"parameterLocation\": \"PAYLOAD_BODY\",\n    \"location\": \"aliquip laborum\",\n    \"message\": \"cillum sint nostrud incididunt\",\n    \"path\": \"ex cillum e\"\n   }\n  ],\n  \"code\": -31858662,\n  \"message\": \"consectetur nisi non est\"\n }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "Api-Token {{DT_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fe169fac-260d-42ad-8683-82fe5cdc026c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "dd9367d0-fb71-47dc-a1bd-4e54ca7d213b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b4aaf5b9-d44b-4faa-a3f3-00570da13003",
+			"key": "baseUrl",
+			"value": "https://{{DT_HOST}}/api/cluster/v2"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

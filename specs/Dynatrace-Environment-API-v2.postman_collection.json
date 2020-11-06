@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "34da7d49-ab0e-4e33-a77a-b1a855727c18",
+		"_postman_id": "360b2d7e-a77c-4ad4-b753-d9471ef95d34",
 		"name": "Dynatrace Environment API v2",
 		"description": "\nDocumentation of the Dynatrace Environment API v2. Resources here generally supersede those in v1. Migration of resources from v1 is in progress. If you miss a resource, consider using the Dynatrace Environment API v1. Refer to the [help page](https://www.dynatrace.com/support/help/shortlink/env-api) to read about use cases and examples.\n\nNotes about compatibility:\n* Operations marked as early adopter or preview may be changed in non-compatible ways, although we try to avoid this.\n* We may add new enum constants without incrementing the API version; thus, clients need to handle unknown enum constants gracefully.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -171,47 +171,6 @@
 											},
 											"response": [
 												{
-													"name": "Not found. See response body for details.",
-													"originalRequest": {
-														"method": "DELETE",
-														"header": [],
-														"url": {
-															"raw": "https://{{DT_HOST}}/api/v2/activeGates/:agId/updateJobs/:jobId",
-															"protocol": "https",
-															"host": [
-																"{{DT_HOST}}"
-															],
-															"path": [
-																"api",
-																"v2",
-																"activeGates",
-																":agId",
-																"updateJobs",
-																":jobId"
-															],
-															"variable": [
-																{
-																	"key": "agId"
-																},
-																{
-																	"key": "jobId"
-																}
-															]
-														}
-													},
-													"status": "Not Found",
-													"code": 404,
-													"_postman_previewlanguage": "text",
-													"header": [
-														{
-															"key": "Content-Type",
-															"value": "application/json; charset=utf-8"
-														}
-													],
-													"cookie": [],
-													"body": ""
-												},
-												{
 													"name": "Success. The update-job have been deleted. Response doesn't have a body.",
 													"originalRequest": {
 														"method": "DELETE",
@@ -247,6 +206,47 @@
 														{
 															"key": "Content-Type",
 															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not found. See response body for details.",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/v2/activeGates/:agId/updateJobs/:jobId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"v2",
+																"activeGates",
+																":agId",
+																"updateJobs",
+																":jobId"
+															],
+															"variable": [
+																{
+																	"key": "agId"
+																},
+																{
+																	"key": "jobId"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
 														}
 													],
 													"cookie": [],
@@ -321,12 +321,12 @@
 												{
 													"key": "from",
 													"value": "<string>",
-													"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one week is used (`now-1w`). \n\nMaximum timeframe is 31 days."
+													"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one week is used (`now-1w`). \n\nMaximum timeframe is 31 days."
 												},
 												{
 													"key": "to",
 													"value": "<string>",
-													"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+													"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
 												},
 												{
 													"key": "startVersionCompareType",
@@ -778,42 +778,6 @@
 							},
 							"response": [
 								{
-									"name": "Success",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://{{DT_HOST}}/api/v2/activeGates/:agId",
-											"protocol": "https",
-											"host": [
-												"{{DT_HOST}}"
-											],
-											"path": [
-												"api",
-												"v2",
-												"activeGates",
-												":agId"
-											],
-											"variable": [
-												{
-													"key": "agId"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "Not found. See response body for details.",
 									"originalRequest": {
 										"method": "GET",
@@ -839,6 +803,42 @@
 									},
 									"status": "Not Found",
 									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/activeGates/:agId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"activeGates",
+												":agId"
+											],
+											"variable": [
+												{
+													"key": "agId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
 									"_postman_previewlanguage": "text",
 									"header": [
 										{
@@ -918,70 +918,6 @@
 					},
 					"response": [
 						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/activeGates?hostname=<string>&osType=<string>&networkAddress=<string>&type=<string>&networkZone=<string>&updateStatus=<string>&versionCompareType=EQUAL&version=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"activeGates"
-									],
-									"query": [
-										{
-											"key": "hostname",
-											"value": "<string>"
-										},
-										{
-											"key": "osType",
-											"value": "<string>"
-										},
-										{
-											"key": "networkAddress",
-											"value": "<string>"
-										},
-										{
-											"key": "type",
-											"value": "<string>"
-										},
-										{
-											"key": "networkZone",
-											"value": "<string>"
-										},
-										{
-											"key": "updateStatus",
-											"value": "<string>"
-										},
-										{
-											"key": "versionCompareType",
-											"value": "EQUAL"
-										},
-										{
-											"key": "version",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
 							"name": "Failed. The input is invalid.",
 							"originalRequest": {
 								"method": "GET",
@@ -1035,6 +971,70 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/activeGates?hostname=<string>&osType=<string>&networkAddress=<string>&type=<string>&networkZone=<string>&updateStatus=<string>&versionCompareType=EQUAL&version=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"activeGates"
+									],
+									"query": [
+										{
+											"key": "hostname",
+											"value": "<string>"
+										},
+										{
+											"key": "osType",
+											"value": "<string>"
+										},
+										{
+											"key": "networkAddress",
+											"value": "<string>"
+										},
+										{
+											"key": "type",
+											"value": "<string>"
+										},
+										{
+											"key": "networkZone",
+											"value": "<string>"
+										},
+										{
+											"key": "updateStatus",
+											"value": "<string>"
+										},
+										{
+											"key": "versionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "version",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -1068,12 +1068,12 @@
 								{
 									"key": "from",
 									"value": "<string>",
-									"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one day is used (`now-1d`). \n\nMaximum timeframe is 31 days."
+									"description": "The start of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of one day is used (`now-1d`). \n\nMaximum timeframe is 31 days."
 								},
 								{
 									"key": "to",
 									"value": "<string>",
-									"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+									"description": "The end of the requested timeframe for update jobs. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
 								},
 								{
 									"key": "startVersionCompareType",
@@ -1105,67 +1105,6 @@
 						"description": "The response includes ActiveGates that have both completed (successful and failed) jobs and jobs in progress."
 					},
 					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/activeGates/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"activeGates",
-										"updateJobs"
-									],
-									"query": [
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "startVersionCompareType",
-											"value": "EQUAL"
-										},
-										{
-											"key": "startVersion",
-											"value": "<string>"
-										},
-										{
-											"key": "updateType",
-											"value": "<string>"
-										},
-										{
-											"key": "targetVersionCompareType",
-											"value": "EQUAL"
-										},
-										{
-											"key": "targetVersion",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
 						{
 							"name": "Failed. The input is invalid.",
 							"originalRequest": {
@@ -1226,74 +1165,14 @@
 							],
 							"cookie": [],
 							"body": ""
-						}
-					]
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "auditlogs",
-			"item": [
-				{
-					"name": "Gets the audit log of your Dynatrace environment | maturity=EARLY_ADOPTER",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/auditlogs?nextPageKey=<string>&pageSize=<long>&filter=<string>&from=<string>&to=<string>&sort=-timestamp",
-							"protocol": "https",
-							"host": [
-								"{{DT_HOST}}"
-							],
-							"path": [
-								"api",
-								"v2",
-								"auditlogs"
-							],
-							"query": [
-								{
-									"key": "nextPageKey",
-									"value": "<string>",
-									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
-								},
-								{
-									"key": "pageSize",
-									"value": "<long>",
-									"description": "The desired amount of log entries in a single response payload. \n\nThe maximal allowed page size is 5000. \n\nIf not set, 1000 is used."
-								},
-								{
-									"key": "filter",
-									"value": "<string>",
-									"description": "Filters the audit log. You can use the following criteria: \n* User: `user(\"userIdentification\")`. The `EQUALS` operator applies. \n* Event type: `eventType(\"value\")`. The `EQUALS` operator applies. \n* Category of a logged operation: `category(\"value\")`. The `EQUALS` operator applies. \n* Entity ID: `entityId(\"id\")`. The `CONTAINS` operator applies. \n\nFor each criterion, you can specify multiple alternatives with comma-separated values. In this case, the OR logic applies. For example, `eventType(\"CREATE\",\"UPDATE\")` means eventType can be \"CREATE\" or \"UPDATE\". \n\nYou can specify multiple comma-separated criteria, such as `eventType(\"CREATE\",\"UPDATE\"),category(\"CONFIG\")`. Only results matching **all** criteria are included in response. \n\nSpecify the value of a criterion as a quoted string. The following special characters must be escaped with a tilde (`~`) inside quotes: \n* Tilde `~` \n* Quote `\"`"
-								},
-								{
-									"key": "from",
-									"value": "<string>",
-									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of two weeks is used (`now-2w`)."
-								},
-								{
-									"key": "to",
-									"value": "<string>",
-									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
-								},
-								{
-									"key": "sort",
-									"value": "-timestamp",
-									"description": "The sorting of audit log entries: \n* `timestamp`: Oldest first. \n* `-timestamp`: Newest first. \n\nIf not set, the newest first sorting is applied."
-								}
-							]
 						},
-						"description": "You can limit the output by using pagination: \n1. Specify the number of results per page in the **pageSize** query parameter. \n2. Use the cursor from the **nextPageKey** field of the previous response in the **nextPageKey** query parameter to obtain subsequent pages."
-					},
-					"response": [
 						{
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/auditlogs?nextPageKey=<string>&pageSize=<long>&filter=<string>&from=<string>&to=<string>&sort=-timestamp",
+									"raw": "https://{{DT_HOST}}/api/v2/activeGates/updateJobs?from=<string>&to=<string>&startVersionCompareType=EQUAL&startVersion=<string>&updateType=<string>&targetVersionCompareType=EQUAL&targetVersion=<string>",
 									"protocol": "https",
 									"host": [
 										"{{DT_HOST}}"
@@ -1301,21 +1180,10 @@
 									"path": [
 										"api",
 										"v2",
-										"auditlogs"
+										"activeGates",
+										"updateJobs"
 									],
 									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "filter",
-											"value": "<string>"
-										},
 										{
 											"key": "from",
 											"value": "<string>"
@@ -1325,151 +1193,30 @@
 											"value": "<string>"
 										},
 										{
-											"key": "sort",
-											"value": "-timestamp"
+											"key": "startVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "startVersion",
+											"value": "<string>"
+										},
+										{
+											"key": "updateType",
+											"value": "<string>"
+										},
+										{
+											"key": "targetVersionCompareType",
+											"value": "EQUAL"
+										},
+										{
+											"key": "targetVersion",
+											"value": "<string>"
 										}
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Gets the specified entry of the audit log | maturity=EARLY_ADOPTER",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
-							"protocol": "https",
-							"host": [
-								"{{DT_HOST}}"
-							],
-							"path": [
-								"api",
-								"v2",
-								"auditlogs",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "<string>",
-									"description": "(Required) The ID of the required log entry."
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"auditlogs",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"auditlogs",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Failed. Invalid ID format.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"auditlogs",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -1518,17 +1265,17 @@
 								{
 									"key": "entitySelector",
 									"value": "<string>",
-									"description": "Defines the scope of the query. Only entities matching the specified criteria are included into response. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. You can specify several entity names, separated by a comma (`entityName(\"name-1\",\"name-2\")`). Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\nThe field is **required** when you're querying the first page of results."
+									"description": "Defines the scope of the query. Only entities matching the specified criteria are included into response. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\nThe field is **required** when you're querying the first page of results."
 								},
 								{
 									"key": "from",
 									"value": "<string>",
-									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of three days is used (`now-3d`)."
+									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of three days is used (`now-3d`)."
 								},
 								{
 									"key": "to",
 									"value": "<string>",
-									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
 								},
 								{
 									"key": "fields",
@@ -1580,84 +1327,6 @@
 										{
 											"key": "fields",
 											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Gets the properties of the specified monitored entity | maturity=EARLY_ADOPTER",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/entities/:entityId?fields=<string>",
-							"protocol": "https",
-							"host": [
-								"{{DT_HOST}}"
-							],
-							"path": [
-								"api",
-								"v2",
-								"entities",
-								":entityId"
-							],
-							"query": [
-								{
-									"key": "fields",
-									"value": "<string>",
-									"description": "Defines the list of entity properties included in the response. The ID and the name of an entity are **always** included to the response. \n\nTo add properties, list them with leading plus `+`. You can specify several properties, separated by a comma (for example `fields=+lastSeenTms,+properties.BITNESS`). \n\nUse the [GET /entityTypes/{type}](https://www.dynatrace.com/support/help/shortlink/api-entities-v2-get-entity-type) request to fetch the list of properties available for your entity type. Fields from the **properties** object must be specified in the `properties.FIELD` format (for example, `properties.BITNESS`)."
-								}
-							],
-							"variable": [
-								{
-									"key": "entityId",
-									"value": "<string>",
-									"description": "(Required) The ID of the required entity."
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/entities/:entityId?fields=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"entities",
-										":entityId"
-									],
-									"query": [
-										{
-											"key": "fields",
-											"value": "<string>"
-										}
-									],
-									"variable": [
-										{
-											"key": "entityId"
 										}
 									]
 								}
@@ -1811,6 +1480,102 @@
 							"body": ""
 						}
 					]
+				},
+				{
+					"name": "Gets the properties of the specified monitored entity | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/entities/:entityId?from=<string>&to=<string>&fields=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"entities",
+								":entityId"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "<string>",
+									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of three days is used (`now-3d`)."
+								},
+								{
+									"key": "to",
+									"value": "<string>",
+									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+								},
+								{
+									"key": "fields",
+									"value": "<string>",
+									"description": "Defines the list of entity properties included in the response. The ID and the name of an entity are **always** included to the response. \n\nTo add properties, list them with leading plus `+`. You can specify several properties, separated by a comma (for example `fields=+lastSeenTms,+properties.BITNESS`). \n\nUse the [GET /entityTypes/{type}](https://www.dynatrace.com/support/help/shortlink/api-entities-v2-get-entity-type) request to fetch the list of properties available for your entity type. Fields from the **properties** object must be specified in the `properties.FIELD` format (for example, `properties.BITNESS`)."
+								}
+							],
+							"variable": [
+								{
+									"key": "entityId",
+									"value": "<string>",
+									"description": "(Required) The ID of the required entity."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/entities/:entityId?from=<string>&to=<string>&fields=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"entities",
+										":entityId"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "fields",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "entityId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1851,46 +1616,6 @@
 					},
 					"response": [
 						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/entityTypes?nextPageKey=<string>&pageSize=<long>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"entityTypes"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
 							"name": "Failed. There are no more entity types to export.",
 							"originalRequest": {
 								"method": "GET",
@@ -1925,6 +1650,46 @@
 								{
 									"key": "Content-Type",
 									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/entityTypes?nextPageKey=<string>&pageSize=<long>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"entityTypes"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
 								}
 							],
 							"cookie": [],
@@ -2045,7 +1810,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>",
+							"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>&writtenSince=<string>",
 							"protocol": "https",
 							"host": [
 								"{{DT_HOST}}"
@@ -2079,7 +1844,12 @@
 								{
 									"key": "fields",
 									"value": "<string>",
-									"description": "Defines the list of metric properties included in the response. \n\n`metricId` is **always** included in the result. The following additional properties are available: \n\n* `displayName`: The name of the metric in the user interface. Enabled by default. \n* `description`: A short description of the metric. Enabled by default. \n* `unit`: The unit of the metric. Enabled by default. \n* `aggregationTypes`: The list of allowed aggregations for the metric. Note that it may be different after a [transformation](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) is applied. \n* `defaultAggregation`: The default aggregation of the metric. It is used when no aggregation is specified or the `:auto` transformation is set. \n* `dimensionDefinitions`: The fine metric division (for example, process group and process ID for some process-related metric). \n* `transformations`: A list of [transformations](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) that can be applied to the metric.\n* `entityType`: A list of entity types supported by the metric.\n\nTo add properties, list them with leading plus `+`. To exclude default properties, list them with leading minus `-`. \n\nTo specify several properties, join them with a comma (for example `fields=+aggregationTypes,-description`).\n\nIf you specify just one property, the response contains the metric key and the specified property.To return metric keys only, specify `metricId` here."
+									"description": "Defines the list of metric properties included in the response. \n\n`metricId` is **always** included in the result. The following additional properties are available: \n\n* `displayName`: The name of the metric in the user interface. Enabled by default. \n* `description`: A short description of the metric. Enabled by default. \n* `unit`: The unit of the metric. Enabled by default. \n+ `dduBillable`:  An indicator whether the usage of metric consumes [Davis data units](https://www.dynatrace.com/support/help/shortlink/davis-data-units). \n* `created`:  The timestamp (UTC milliseconds) when the metrics has been created. \n* `lastWritten`:  The timestamp (UTC milliseconds) when metric data points have been written for the last time. \n* `aggregationTypes`: The list of allowed aggregations for the metric. Note that it may be different after a [transformation](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) is applied. \n* `defaultAggregation`: The default aggregation of the metric. It is used when no aggregation is specified or the `:auto` transformation is set. \n* `dimensionDefinitions`: The fine metric division (for example, process group and process ID for some process-related metric). \n* `transformations`: A list of [transformations](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) that can be applied to the metric.\n* `entityType`: A list of entity types supported by the metric.\n\nTo add properties, list them with leading plus `+`. To exclude default properties, list them with leading minus `-`. \n\nTo specify several properties, join them with a comma (for example `fields=+aggregationTypes,-description`).\n\nIf you specify just one property, the response contains the metric key and the specified property.To return metric keys only, specify `metricId` here."
+								},
+								{
+									"key": "writtenSince",
+									"value": "<string>",
+									"description": "Filters the resulted set of metrics to those that have data points within the specified timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\n"
 								}
 							]
 						},
@@ -2087,12 +1857,180 @@
 					},
 					"response": [
 						{
+							"name": "Not acceptable. The requested media type is not supported. Check the **Accept** header of your request.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>&writtenSince=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "text",
+											"value": "<string>"
+										},
+										{
+											"key": "fields",
+											"value": "<string>"
+										},
+										{
+											"key": "writtenSince",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not found. The requested resource is not found or the query is incorrect.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>&writtenSince=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "text",
+											"value": "<string>"
+										},
+										{
+											"key": "fields",
+											"value": "<string>"
+										},
+										{
+											"key": "writtenSince",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>&writtenSince=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "text",
+											"value": "<string>"
+										},
+										{
+											"key": "fields",
+											"value": "<string>"
+										},
+										{
+											"key": "writtenSince",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
 							"name": "Syntax or validation error. **metricSelector** or **fields** have syntactic or semantic errors.",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>",
+									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>&writtenSince=<string>",
 									"protocol": "https",
 									"host": [
 										"{{DT_HOST}}"
@@ -2122,526 +2060,9 @@
 										{
 											"key": "fields",
 											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Not found. The requested resource is not found or the query is incorrect.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
 										},
 										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "text",
-											"value": "<string>"
-										},
-										{
-											"key": "fields",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Not acceptable. The requested media type is not supported. Check the **Accept** header of your request.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "text",
-											"value": "<string>"
-										},
-										{
-											"key": "fields",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Not Acceptable",
-							"code": 406,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&text=<string>&fields=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "text",
-											"value": "<string>"
-										},
-										{
-											"key": "fields",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Gets data points of the specified metrics",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-							"protocol": "https",
-							"host": [
-								"{{DT_HOST}}"
-							],
-							"path": [
-								"api",
-								"v2",
-								"metrics",
-								"query"
-							],
-							"query": [
-								{
-									"key": "nextPageKey",
-									"value": "<string>",
-									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
-								},
-								{
-									"key": "pageSize",
-									"value": "<long>",
-									"description": "The desired amount of primary entities in a single response payload. \n\nThe maximal allowed page size is 5000. \n\nIf not set, 100 is used.\n\n If a value higher than 5000 is used, only 5000 results per page are returned."
-								},
-								{
-									"key": "metricSelector",
-									"value": "<string>",
-									"description": "Selects metrics for the query by their keys. You can select up to 10 metrics for one query.\n\n You can specify multiple metric keys separated by commas (for example, `metrickey1,metrickey2`). To select multiple metrics belonging to the same parent, list the last part of the required metric keys in parentheses, separated by commas, while keeping the common part untouched. For example, to list the `builtin:host.cpu.idle` and `builtin:host.cpu.user` metric, write: `builtin:host.cpu.(idle,user)`. \n\nYou can set additional transformation operators, separated by a colon (`:`). See the [Metrics API - selector transformations help page](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) for additional information on available result transformations.\n\n The length of the string is limited to 1,000 characters."
-								},
-								{
-									"key": "resolution",
-									"value": "<string>",
-									"description": "The desired resolution of data points. \n\nYou can use one of the following options: \n* One aggregated data point of each series. Set `Inf` to use this option. \n* The desired amount of data points. This is the default option. This is a reference number of points, which is not necessarily equal to the number of the returned data points. \n* The desired timespan between data points. This is a reference timespan, which is not necessarily equal to the returned timespan. To use this option, specify the unit of the timespan. \n\nValid units for the timespan are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the default is 120 **data points**."
-								},
-								{
-									"key": "from",
-									"value": "<string>",
-									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of two weeks is used (`now-2w`)."
-								},
-								{
-									"key": "to",
-									"value": "<string>",
-									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. For example, `now-1y/w` is one year back, aligned by a week. The alignment rounds to the past. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
-								},
-								{
-									"key": "entitySelector",
-									"value": "<string>",
-									"description": "Specifies the entity scope of the query. Only data points delivered by matched entities are included in response. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. You can specify several entity names, separated by a comma (`entityName(\"name-1\",\"name-2\")`). Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\nUse the [`GET /metrics/{metricId}`](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-get-descriptor) call to fetch the list of possible entity types for your metric. \n\nTo set a universal scope matching all entities, omit this parameter."
-								}
-							]
-						},
-						"description": "The following limits apply: \n* The amount of aggregated data points in the response is limited to 1,000 \n* The amount of series in the response is limited to 1,000 \n   * The amount of data points per series is limited to 10,080 \n   * The overall amount of data points is limited to 100,000 \n"
-					},
-					"response": [
-						{
-							"name": "Not found. The requested resource is not found or the query is incorrect.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics",
-										"query"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "resolution",
-											"value": "<string>"
-										},
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "entitySelector",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics",
-										"query"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "resolution",
-											"value": "<string>"
-										},
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "entitySelector",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Failed. The request is valid but the response is too big to process. Split your query into several queries with limited scopes.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics",
-										"query"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "resolution",
-											"value": "<string>"
-										},
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "entitySelector",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Forbidden",
-							"code": 403,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Not acceptable. The requested media type is not supported. Check the **Accept** header of your request.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics",
-										"query"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "resolution",
-											"value": "<string>"
-										},
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "entitySelector",
-											"value": "<string>"
-										}
-									]
-								}
-							},
-							"status": "Not Acceptable",
-							"code": 406,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Syntax or validation error. From and to parameters, scope or resolution are incorrect individually or in their combined meaning.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
-									"protocol": "https",
-									"host": [
-										"{{DT_HOST}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"metrics",
-										"query"
-									],
-									"query": [
-										{
-											"key": "nextPageKey",
-											"value": "<string>"
-										},
-										{
-											"key": "pageSize",
-											"value": "<long>"
-										},
-										{
-											"key": "metricSelector",
-											"value": "<string>"
-										},
-										{
-											"key": "resolution",
-											"value": "<string>"
-										},
-										{
-											"key": "from",
-											"value": "<string>"
-										},
-										{
-											"key": "to",
-											"value": "<string>"
-										},
-										{
-											"key": "entitySelector",
+											"key": "writtenSince",
 											"value": "<string>"
 										}
 									]
@@ -2797,6 +2218,472 @@
 							"body": ""
 						}
 					]
+				},
+				{
+					"name": "Gets data points of the specified metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"metrics",
+								"query"
+							],
+							"query": [
+								{
+									"key": "nextPageKey",
+									"value": "<string>",
+									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
+								},
+								{
+									"key": "pageSize",
+									"value": "<long>",
+									"description": "The desired amount of primary entities in a single response payload. \n\nThe maximal allowed page size is 5000. \n\nIf not set, 100 is used.\n\n If a value higher than 5000 is used, only 5000 results per page are returned."
+								},
+								{
+									"key": "metricSelector",
+									"value": "<string>",
+									"description": "Selects metrics for the query by their keys. You can select up to 10 metrics for one query.\n\n You can specify multiple metric keys separated by commas (for example, `metrickey1,metrickey2`). To select multiple metrics belonging to the same parent, list the last part of the required metric keys in parentheses, separated by commas, while keeping the common part untouched. For example, to list the `builtin:host.cpu.idle` and `builtin:host.cpu.user` metric, write: `builtin:host.cpu.(idle,user)`. \n\nYou can set additional transformation operators, separated by a colon (`:`). See the [Metrics API - selector transformations help page](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-selector) for additional information on available result transformations.\n\n If the metric key contains the following characters, they must be escaped with a tilde (`~`): \n\n* Period (`.`) \n* Comma (`,`) \n* Colon (`:`) \n* Opening and closing brackets (`()`) \n* Tilde (`~`) \n\nFor example, to query the metric with the key of **ext:Apache, nginx (Web Servers)** and the dimension of **Index (incl., max ~8)** for the value of `8`, you must specify this selector: `ext:Apache~, nginx ~(Web Servers~):filter(Index ~(incl~.~,max ~~8~),8)`\n\n The length of the string is limited to 1,000 characters."
+								},
+								{
+									"key": "resolution",
+									"value": "<string>",
+									"description": "The desired resolution of data points. \n\nYou can use one of the following options: \n* One aggregated data point of each series. Set `Inf` to use this option. \n* The desired amount of data points. This is the default option. This is a reference number of points, which is not necessarily equal to the number of the returned data points. \n* The desired timespan between data points. This is a reference timespan, which is not necessarily equal to the returned timespan. To use this option, specify the unit of the timespan. \n\nValid units for the timespan are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the default is 120 **data points**."
+								},
+								{
+									"key": "from",
+									"value": "<string>",
+									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of two weeks is used (`now-2w`)."
+								},
+								{
+									"key": "to",
+									"value": "<string>",
+									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+								},
+								{
+									"key": "entitySelector",
+									"value": "<string>",
+									"description": "Specifies the entity scope of the query. Only data points delivered by matched entities are included in response. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\nUse the [`GET /metrics/{metricId}`](https://www.dynatrace.com/support/help/shortlink/api-metrics-v2-get-descriptor) call to fetch the list of possible entity types for your metric. \n\nTo set a universal scope matching all entities, omit this parameter."
+								}
+							]
+						},
+						"description": "The following limits apply: \n* The amount of aggregated data points in the response is limited to 1,000 \n* The amount of series in the response is limited to 1,000 \n   * The amount of data points per series is limited to 10,080 \n   * The overall amount of data points is limited to 100,000 \n"
+					},
+					"response": [
+						{
+							"name": "Syntax or validation error. From and to parameters, scope or resolution are incorrect individually or in their combined meaning.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"query"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "resolution",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not found. The requested resource is not found or the query is incorrect.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"query"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "resolution",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not acceptable. The requested media type is not supported. Check the **Accept** header of your request.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"query"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "resolution",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failed. The request is valid but the response is too big to process. Split your query into several queries with limited scopes.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"query"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "resolution",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/query?nextPageKey=<string>&pageSize=<long>&metricSelector=<string>&resolution=<string>&from=<string>&to=<string>&entitySelector=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"query"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "metricSelector",
+											"value": "<string>"
+										},
+										{
+											"key": "resolution",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Pushes metric data points to Dynatrace | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"<string>\""
+						},
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/metrics/ingest",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"metrics",
+								"ingest"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Some data points are invalid. Valid data points are accepted and will be processed in background.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"server.cpu.temperature,cpu.id=0 42\""
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/ingest",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"ingest"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "The provided metric data points are accepted and will be processed in background.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\"server.cpu.temperature,cpu.id=0 42\""
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/metrics/ingest",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"metrics",
+										"ingest"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -2884,7 +2771,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"description\": \"<string>\",\n    \"alternativeZones\": [\n        \"<string>\"\n    ]\n}"
+									"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
 								},
 								"url": {
 									"raw": "https://{{DT_HOST}}/api/v2/networkZones/:id",
@@ -2910,13 +2797,53 @@
 							},
 							"response": [
 								{
+									"name": "Failed. The input is invalid.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/networkZones/:id",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"networkZones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
 									"name": "Success. The new network zone has been created. The response body contains the ID of the new network zone.",
 									"originalRequest": {
 										"method": "PUT",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"description\": \"<string>\",\n    \"alternativeZones\": [\n        \"<string>\"\n    ]\n}"
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
 										},
 										"url": {
 											"raw": "https://{{DT_HOST}}/api/v2/networkZones/:id",
@@ -2956,7 +2883,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"description\": \"<string>\",\n    \"alternativeZones\": [\n        \"<string>\"\n    ]\n}"
+											"raw": "{\n    \"alternativeZones\": [\n        \"<string>\"\n    ],\n    \"description\": \"<string>\"\n}"
 										},
 										"url": {
 											"raw": "https://{{DT_HOST}}/api/v2/networkZones/:id",
@@ -2984,46 +2911,6 @@
 										{
 											"key": "Content-Type",
 											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
-									"name": "Failed. The input is invalid.",
-									"originalRequest": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"description\": \"<string>\",\n    \"alternativeZones\": [\n        \"<string>\"\n    ]\n}"
-										},
-										"url": {
-											"raw": "https://{{DT_HOST}}/api/v2/networkZones/:id",
-											"protocol": "https",
-											"host": [
-												"{{DT_HOST}}"
-											],
-											"path": [
-												"api",
-												"v2",
-												"networkZones",
-												":id"
-											],
-											"variable": [
-												{
-													"key": "id"
-												}
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
 										}
 									],
 									"cookie": [],
@@ -3313,6 +3200,509 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "synthetic",
+			"item": [
+				{
+					"name": "locations",
+					"item": [
+						{
+							"name": "{location Id}",
+							"item": [
+								{
+									"name": "Gets properties of the specified location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the required location."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success. The response contains parameters of the synthetic location.",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Updates the specified synthetic location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json; charset=utf-8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"type\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the synthetic location to be updated."
+												}
+											]
+										},
+										"description": "For public locations you can only change the location status."
+									},
+									"response": [
+										{
+											"name": "Success. The location has been updated. Response doesn't have a body.",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"type\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Deletes the specified private synthetic location | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"locations",
+												":locationId"
+											],
+											"variable": [
+												{
+													"key": "locationId",
+													"value": "<string>",
+													"description": "(Required) The Dynatrace entity ID of the private synthetic location to be deleted."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success. The location has been deleted. Response doesn't have a body.",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations/:locationId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"synthetic",
+														"locations",
+														":locationId"
+													],
+													"variable": [
+														{
+															"key": "locationId"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Lists all synthetic locations (both public and private) available for your environment | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations?cloudPlatform=<string>&type=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"synthetic",
+										"locations"
+									],
+									"query": [
+										{
+											"key": "cloudPlatform",
+											"value": "<string>",
+											"description": "Filters the resulting set of locations to those which are hosted on a specific cloud platform."
+										},
+										{
+											"key": "type",
+											"value": "<string>",
+											"description": "Filters the resulting set of locations to those of a specific type."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations?cloudPlatform=<string>&type=<string>",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"locations"
+											],
+											"query": [
+												{
+													"key": "cloudPlatform",
+													"value": "<string>"
+												},
+												{
+													"key": "type",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Creates a new private synthetic location | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"availabilityLocationOutage\": \"<boolean>\",\n    \"availabilityNodeOutage\": \"<boolean>\",\n    \"locationNodeOutageDelayInMinutes\": \"<integer>\",\n    \"geoLocationId\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"synthetic",
+										"locations"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success. The private location has been created. The response contains the ID of the new location.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"entityId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"city\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\",\n    \"status\": \"<string>\",\n    \"nodes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"availabilityLocationOutage\": \"<boolean>\",\n    \"availabilityNodeOutage\": \"<boolean>\",\n    \"locationNodeOutageDelayInMinutes\": \"<integer>\",\n    \"geoLocationId\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/locations",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"locations"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "nodes",
+					"item": [
+						{
+							"name": "Lists all synthetic nodes available in your environment | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/synthetic/nodes",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"synthetic",
+										"nodes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/nodes",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"nodes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Lists properties of the specified synthetic node | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/synthetic/nodes/:nodeId",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"synthetic",
+										"nodes",
+										":nodeId"
+									],
+									"variable": [
+										{
+											"key": "nodeId",
+											"value": "<string>",
+											"description": "(Required) The ID of the required synthetic node."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/synthetic/nodes/:nodeId",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"synthetic",
+												"nodes",
+												":nodeId"
+											],
+											"variable": [
+												{
+													"key": "nodeId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "tags",
 			"item": [
 				{
@@ -3335,7 +3725,7 @@
 								{
 									"key": "entitySelector",
 									"value": "<string>",
-									"description": "Specifies the entities where you want to read tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. You can specify several entity names, separated by a comma (`entityName(\"name-1\",\"name-2\")`). Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
+									"description": "Specifies the entities where you want to read tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
 								}
 							]
 						},
@@ -3392,7 +3782,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tags\": [\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\"\n        }\n    ]\n}"
+							"raw": "{\n    \"tags\": [\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        },\n        {\n            \"key\": \"<string>\",\n            \"value\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "https://{{DT_HOST}}/api/v2/tags?entitySelector=<string>",
@@ -3409,7 +3799,7 @@
 								{
 									"key": "entitySelector",
 									"value": "<string>",
-									"description": "Specifies the entities where you want to update tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. You can specify several entity names, separated by a comma (`entityName(\"name-1\",\"name-2\")`). Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
+									"description": "Specifies the entities where you want to update tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
 								}
 							]
 						},
@@ -3423,7 +3813,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"tags\": [\n        {\n            \"key\": \"mainApp\"\n        },\n        {\n            \"key\": \"bookings\"\n        }\n    ]\n}"
+									"raw": "{\n    \"tags\": [\n        {\n            \"key\": \"mainApp\"\n        },\n        {\n            \"key\": \"bookings\",\n            \"value\": \"42\"\n        }\n    ]\n}"
 								},
 								"url": {
 									"raw": "https://{{DT_HOST}}/api/v2/tags?entitySelector=<string>",
@@ -3464,7 +3854,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://{{DT_HOST}}/api/v2/tags?tag=<string>&entitySelector=<string>",
+							"raw": "https://{{DT_HOST}}/api/v2/tags?key=<string>&value=<string>&deleteAllWithKey=<boolean>&entitySelector=<string>",
 							"protocol": "https",
 							"host": [
 								"{{DT_HOST}}"
@@ -3476,14 +3866,24 @@
 							],
 							"query": [
 								{
-									"key": "tag",
+									"key": "key",
 									"value": "<string>",
+									"description": "(Required) The tag to be deleted."
+								},
+								{
+									"key": "value",
+									"value": "<string>",
+									"description": "The tag to be deleted."
+								},
+								{
+									"key": "deleteAllWithKey",
+									"value": "<boolean>",
 									"description": "The tag to be deleted."
 								},
 								{
 									"key": "entitySelector",
 									"value": "<string>",
-									"description": "Specifies the entities where you want to delete tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. You can specify several entity names, separated by a comma (`entityName(\"name-1\",\"name-2\")`). Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
+									"description": "(Required) Specifies the entities where you want to delete tags. \n\nYou need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\n"
 								}
 							]
 						}
@@ -3495,7 +3895,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://{{DT_HOST}}/api/v2/tags?tag=<string>&entitySelector=<string>",
+									"raw": "https://{{DT_HOST}}/api/v2/tags?key=<string>&value=<string>&deleteAllWithKey=<boolean>&entitySelector=<string>",
 									"protocol": "https",
 									"host": [
 										"{{DT_HOST}}"
@@ -3507,11 +3907,1039 @@
 									],
 									"query": [
 										{
-											"key": "tag",
+											"key": "key",
+											"value": "<string>"
+										},
+										{
+											"key": "value",
+											"value": "<string>"
+										},
+										{
+											"key": "deleteAllWithKey",
+											"value": "<boolean>"
+										},
+										{
+											"key": "entitySelector",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auditlogs",
+			"item": [
+				{
+					"name": "Gets the audit log of your Dynatrace environment | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/auditlogs?nextPageKey=<string>&pageSize=<long>&filter=<string>&from=<string>&to=<string>&sort=-timestamp",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"auditlogs"
+							],
+							"query": [
+								{
+									"key": "nextPageKey",
+									"value": "<string>",
+									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
+								},
+								{
+									"key": "pageSize",
+									"value": "<long>",
+									"description": "The desired amount of log entries in a single response payload. \n\nThe maximal allowed page size is 5000. \n\nIf not set, 1000 is used."
+								},
+								{
+									"key": "filter",
+									"value": "<string>",
+									"description": "Filters the audit log. You can use the following criteria: \n* User: `user(\"userIdentification\")`. The `EQUALS` operator applies. \n* Event type: `eventType(\"value\")`. The `EQUALS` operator applies. \n* Category of a logged operation: `category(\"value\")`. The `EQUALS` operator applies. \n* Entity ID: `entityId(\"id\")`. The `CONTAINS` operator applies. \n\nFor each criterion, you can specify multiple alternatives with comma-separated values. In this case, the OR logic applies. For example, `eventType(\"CREATE\",\"UPDATE\")` means eventType can be \"CREATE\" or \"UPDATE\". \n\nYou can specify multiple comma-separated criteria, such as `eventType(\"CREATE\",\"UPDATE\"),category(\"CONFIG\")`. Only results matching **all** criteria are included in response. \n\nSpecify the value of a criterion as a quoted string. The following special characters must be escaped with a tilde (`~`) inside quotes: \n* Tilde `~` \n* Quote `\"`"
+								},
+								{
+									"key": "from",
+									"value": "<string>",
+									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of two weeks is used (`now-2w`)."
+								},
+								{
+									"key": "to",
+									"value": "<string>",
+									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+								},
+								{
+									"key": "sort",
+									"value": "-timestamp",
+									"description": "The sorting of audit log entries: \n* `timestamp`: Oldest first. \n* `-timestamp`: Newest first. \n\nIf not set, the newest first sorting is applied."
+								}
+							]
+						},
+						"description": "You can limit the output by using pagination: \n1. Specify the number of results per page in the **pageSize** query parameter. \n2. Use the cursor from the **nextPageKey** field of the previous response in the **nextPageKey** query parameter to obtain subsequent pages."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/auditlogs?nextPageKey=<string>&pageSize=<long>&filter=<string>&from=<string>&to=<string>&sort=-timestamp",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"auditlogs"
+									],
+									"query": [
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "filter",
+											"value": "<string>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "sort",
+											"value": "-timestamp"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Gets the specified entry of the audit log | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"auditlogs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<string>",
+									"description": "(Required) The ID of the required log entry."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"auditlogs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"auditlogs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failed. Invalid ID format.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/auditlogs/:id",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"auditlogs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "problems",
+			"item": [
+				{
+					"name": "{problem Id}",
+					"item": [
+						{
+							"name": "comments",
+							"item": [
+								{
+									"name": "{comment Id}",
+									"item": [
+										{
+											"name": "Gets a comment for a problem. | maturity=EARLY_ADOPTER",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"problems",
+														":problemId",
+														"comments",
+														":commentId"
+													],
+													"variable": [
+														{
+															"key": "problemId",
+															"value": "<string>",
+															"description": "(Required) The ID of the problem the comment is assigned to."
+														},
+														{
+															"key": "commentId",
+															"value": "<string>",
+															"description": "(Required) The ID of the comment you're inquiring."
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"v2",
+																"problems",
+																":problemId",
+																"comments",
+																":commentId"
+															],
+															"variable": [
+																{
+																	"key": "problemId"
+																},
+																{
+																	"key": "commentId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json; charset=utf-8"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Updates a comment of a problem. | maturity=EARLY_ADOPTER",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json; charset=utf-8"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"message\": \"<string>\",\n    \"context\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"problems",
+														":problemId",
+														"comments",
+														":commentId"
+													],
+													"variable": [
+														{
+															"key": "problemId",
+															"value": "<string>",
+															"description": "(Required) The ID of the problem the comment is assigned to."
+														},
+														{
+															"key": "commentId",
+															"value": "<string>",
+															"description": "(Required) The ID of the comment you're updating."
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success. The comment has been modified.",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"message\": \"<string>\",\n    \"context\": \"<string>\"\n}"
+														},
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"v2",
+																"problems",
+																":problemId",
+																"comments",
+																":commentId"
+															],
+															"variable": [
+																{
+																	"key": "problemId"
+																},
+																{
+																	"key": "commentId"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "Deletes a comment of a problem. | maturity=EARLY_ADOPTER",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"problems",
+														":problemId",
+														"comments",
+														":commentId"
+													],
+													"variable": [
+														{
+															"key": "problemId",
+															"value": "<string>",
+															"description": "(Required) The ID of the problem the comment is assigned to."
+														},
+														{
+															"key": "commentId",
+															"value": "<string>",
+															"description": "(Required) The ID of the comment you're deleting."
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success. The comment has been deleted.",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments/:commentId",
+															"protocol": "https",
+															"host": [
+																"{{DT_HOST}}"
+															],
+															"path": [
+																"api",
+																"v2",
+																"problems",
+																":problemId",
+																"comments",
+																":commentId"
+															],
+															"variable": [
+																{
+																	"key": "problemId"
+																},
+																{
+																	"key": "commentId"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Gets the comments for a problem. | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments?nextPageKey=<string>&pageSize=<long>",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"problems",
+												":problemId",
+												"comments"
+											],
+											"query": [
+												{
+													"key": "nextPageKey",
+													"value": "<string>",
+													"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters. "
+												},
+												{
+													"key": "pageSize",
+													"value": "<long>",
+													"description": "The number of results per result page."
+												}
+											],
+											"variable": [
+												{
+													"key": "problemId",
+													"value": "<string>",
+													"description": "(Required) The ID of the problem whose comments you're inquiring."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments?nextPageKey=<string>&pageSize=<long>",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"problems",
+														":problemId",
+														"comments"
+													],
+													"query": [
+														{
+															"key": "nextPageKey",
+															"value": "<string>"
+														},
+														{
+															"key": "pageSize",
+															"value": "<long>"
+														}
+													],
+													"variable": [
+														{
+															"key": "problemId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Creates a comment for a problem. | maturity=EARLY_ADOPTER",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json; charset=utf-8"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"message\": \"<string>\",\n    \"context\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"problems",
+												":problemId",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "problemId",
+													"value": "<string>",
+													"description": "(Required) The ID of the problem you're commenting on."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success. The comment has been created.",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"message\": \"<string>\",\n    \"context\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/comments",
+													"protocol": "https",
+													"host": [
+														"{{DT_HOST}}"
+													],
+													"path": [
+														"api",
+														"v2",
+														"problems",
+														":problemId",
+														"comments"
+													],
+													"variable": [
+														{
+															"key": "problemId"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Gets the properties of the specified problem | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId?fields=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"problems",
+										":problemId"
+									],
+									"query": [
+										{
+											"key": "fields",
+											"value": "<string>",
+											"description": "Defines the list of problem properties to be present in the response.\n\nThe following properties may be removed from the response or explicitly requested, all other problem properties are included by default and cannot be removed:\n\n* `evidences`: The findings of the root cause.\n* `impactAnalysis`: The impact analysis of the problem on other entities/users.\n* `recentComments`: A list of most recent comments on this problem.\n\nTo remove properties, prefix them with a `-` (example: `-evidences`).\n\nTo explicitly request certain properties, just specify the plain property (example: `evidences`). This will return the selected property (e.g. `evidences`) along with all other problem properties not listed here.\n\nYou can remove or explicitly request multiple properties at once by joining them with a comma: `-evidences,-recentComments` or `evidences,recentComments`."
+										}
+									],
+									"variable": [
+										{
+											"key": "problemId",
+											"value": "<string>",
+											"description": "(Required) The ID of the problem you're inquiring."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId?fields=<string>",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"problems",
+												":problemId"
+											],
+											"query": [
+												{
+													"key": "fields",
+													"value": "<string>"
+												}
+											],
+											"variable": [
+												{
+													"key": "problemId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Closes a problem | maturity=EARLY_ADOPTER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/close",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"problems",
+										":problemId",
+										"close"
+									],
+									"variable": [
+										{
+											"key": "problemId",
+											"value": "<string>",
+											"description": "(Required) The ID of the problem you're closing."
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "The problem was already closed previously, the manual close request wasn't executed.",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"message\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/close",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"problems",
+												":problemId",
+												"close"
+											],
+											"variable": [
+												{
+													"key": "problemId"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"message\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "https://{{DT_HOST}}/api/v2/problems/:problemId/close",
+											"protocol": "https",
+											"host": [
+												"{{DT_HOST}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"problems",
+												":problemId",
+												"close"
+											],
+											"variable": [
+												{
+													"key": "problemId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Gets the information about problems within the specified timeframe | maturity=EARLY_ADOPTER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{DT_HOST}}/api/v2/problems?fields=<string>&nextPageKey=<string>&pageSize=<long>&from=<string>&to=<string>&problemSelector=<string>&entitySelector=<string>&sort=<string>",
+							"protocol": "https",
+							"host": [
+								"{{DT_HOST}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"problems"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "<string>",
+									"description": "Defines the list of problem properties to be added to the current page. Must be defined separately for each page.\n\nThe following additional properties may be included in the response, all other problem properties are included by default and cannot be removed from the response:\n\n* `evidenceDetails`: The details of the root cause.\n* `impactAnalysis`: The impact analysis of the problem on other entities/users.\n* `recentComments`: A list of the most recent comments on this problem.\n\nTo add properties, prefix them with a `+` (example: `+evidences`). For brevity, you may also omit the `+` and just specify the plain property (example: `evidences`).\n\nYou can add multiple additional properties at once by joining them with a comma: `+evidences,+recentComments` or `evidences,recentComments`.\n\n"
+								},
+								{
+									"key": "nextPageKey",
+									"value": "<string>",
+									"description": "The cursor for the next page of results. You can find it in the **nextPageKey** field of the previous response. \n\nThe first page is always returned if you don't specify the **nextPageKey** query parameter. \n\nWhen the **nextPageKey** is set to obtain subsequent pages, you must omit all other query parameters except the optional **fields** parameter. \n"
+								},
+								{
+									"key": "pageSize",
+									"value": "<long>",
+									"description": "The desired amount of problems in a single response payload. \n\nThe maximal allowed page size is 500. \n\nIf not set, 50 is used."
+								},
+								{
+									"key": "from",
+									"value": "<string>",
+									"description": "The start of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the relative timeframe of two hours is used (`now-2h`)."
+								},
+								{
+									"key": "to",
+									"value": "<string>",
+									"description": "The end of the requested timeframe. \n\nYou can use one of the following formats: \n* Timestamp in UTC milliseconds. \n* Human-readable format of `2019-12-21T05:57:01.123+01:00`. If no time zone is specified, UTC is used. You can use a space character instead of the `T`. Seconds and fractions of a second are optional. \n* Relative timeframe, back from now. The format is `now-NU/A`, where `N` is the amount of time, `U` is the unit of time, and `A` is an alignment. The alignment rounds all the smaller values to the nearest zero in the past. For example, `now-1y/w` is one year back, aligned by a week. \nYou can also specify relative timeframe without an alignment: `now-NU`. \nSupported time units for the relative timeframe are: \n* `m`: minutes \n* `h`: hours \n* `d`: days \n* `w`: weeks \n* `M`: months \n* `y`: years \n\nIf not set, the current timestamp is used."
+								},
+								{
+									"key": "problemSelector",
+									"value": "<string>",
+									"description": "Defines the scope of the query. Only problems matching the specified criteria are included into response. \n\nYou can add several of the following criteria: \n* Status: status(open) or status(closed). You can only specify a single status. \n* Severity Level: severityLevel(performance). You can specify several severity levels.\n* Impact Level: impactLevel(infrastructure,application). You can specify several impact levels.\n* Root cause Entity: rootCauseEntity(meId_1, ..., meId_n). You can specify several rootCause entity IDs.\n* Management Zone by ID: managementZoneIds(mzId1, ..., mzId_n). You can specify several management zone IDs.\n* Management Zone by name: managementZones(text1, ..., text_n). You can specify several management zone names.\n* Impacted Entities: impactedEntities(meId_1, ..., meId_n). You can specify several impacted entity IDs.\n* Affected Entities: affectedEntities(meId_1, ..., meId_n). You can specify several affected entity IDs.\n* Affected Entity Types: affectedEntityTypes(type1, ..., type_n). You can specify several affected entity types.\n* Problem ID: problemId(pid1, ..., pid_n). You can specify several problem IDs.\n* Problem Filter ID: problemFilterIds(id_1, ..., id_n). You can specify several IDs of problem filters (also known as 'alerting profiles').\n* Problem Filter Name: problemFilterNames(text_1, ..., text_n). You can specify several names of problem filters (also known as 'alerting profiles').\n* Entity tags: entityTags(tagKey_1:tagValue_1, ..., tagKey_n:tagValue_n). Tags in [context]key:value, key:value, and value formats are detected and parsed automatically. If a value-only tag has a colon (:) in it, you must escape the colon with a backslash(\\). Otherwise, the tag will be parsed as a key:value tag. All tag values are case-sensitive.\n* Display ID: displayId(did1, ..., did_n). You can specify several display IDs.\n\nTo set several filters, separate them with a comma (`,`). Only results, matching **all** filters, are included in the response. \n\n"
+								},
+								{
+									"key": "entitySelector",
+									"value": "<string>",
+									"description": "You need to set one of these criteria: \n\n* Entity type: `type(\"value\")`. \n* Dynatrace entity ID: `entityId(\"id\")`. You can specify several IDs, separated by a comma (`entityId(\"id-1\",\"id-2\")`). \n\nAnd you can add one or several of the following criteria: \n\n* Tag: `tag(\"value\")`. Tags in `[context]key:value`, `key:value`, and `value` formats are detected and parsed automatically. If a value-only tag has a colon (`:`) in it, you must escape the colon with a backslash(`\\`). Otherwise, the tag will be parsed as a `key:value` tag. All tag values are case-sensitive. \n* Management zone ID: `mzId(\"ID\")` \n* Management zone name: `mzName(\"value\")`. Management zone names are case-sensitive. \n* Dynatrace entity name: `entityName(\"value\")`. Entity names are case-sensitive. \n* Health state (HEALTHY,UNHEALTHY): `healthState(\"HEALTHY\")`\n\nFurther information can be found [here](https://www.dynatrace.com/support/help/dynatrace-api/environment-api/entity-v2/).\nTo set several criteria, separate them with a comma (`,`). For example, `type(\"HOST\"),healthState(\"HEALTHY\")`. Only results matching **all** criteria are included in response. \n\nThe length of the string is limited to 10,000 characters. \n\nSpecify a query which results less than 10000 entities !\n\n"
+								},
+								{
+									"key": "sort",
+									"value": "<string>",
+									"description": "Specifies a set of comma `,` separated fields that represents multiple sorting levels for the problem list.\n\nEach field has a sign prefix (+/-) which corresponds to the sorting order ( + for ascending and - for descending) \nIf no sign prefix is set, then default ascending sorting oder will be applied \nYou can sort by the following properties:\n * `status`: sorting by problem status\n * `startTime`: sorting by problem start time\nExample: -status,+starttime"
+								}
+							]
+						},
+						"description": "Lists problems observed within a relative time along with their properties"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DT_HOST}}/api/v2/problems?fields=<string>&nextPageKey=<string>&pageSize=<long>&from=<string>&to=<string>&problemSelector=<string>&entitySelector=<string>&sort=<string>",
+									"protocol": "https",
+									"host": [
+										"{{DT_HOST}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"problems"
+									],
+									"query": [
+										{
+											"key": "fields",
+											"value": "<string>"
+										},
+										{
+											"key": "nextPageKey",
+											"value": "<string>"
+										},
+										{
+											"key": "pageSize",
+											"value": "<long>"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "problemSelector",
 											"value": "<string>"
 										},
 										{
 											"key": "entitySelector",
+											"value": "<string>"
+										},
+										{
+											"key": "sort",
 											"value": "<string>"
 										}
 									]
@@ -3539,13 +4967,13 @@
 		"type": "apikey",
 		"apikey": [
 			{
-				"key": "key",
-				"value": "Authorization",
+				"key": "value",
+				"value": "Api-Token {{DT_TOKEN}}",
 				"type": "string"
 			},
 			{
-				"key": "value",
-				"value": "Api-Token {{DT_TOKEN}}",
+				"key": "key",
+				"value": "Authorization",
 				"type": "string"
 			}
 		]
@@ -3554,7 +4982,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d8677219-b770-4ba4-9617-55ebf641cea5",
+				"id": "d764d34a-4997-4f89-b434-f013227c6f92",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -3564,7 +4992,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "8b337aa9-ffcb-4695-9bcb-ba3c49ba4859",
+				"id": "c20e93aa-0d52-4902-8432-5cd6a5a892dd",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -3574,7 +5002,7 @@
 	],
 	"variable": [
 		{
-			"id": "4bb646df-aeda-49f1-9588-10850e4cc79a",
+			"id": "8c6159fc-f946-4a02-bb48-cb43ca4bd788",
 			"key": "baseUrl",
 			"value": "https://{{DT_HOST}}/api/v2"
 		}

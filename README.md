@@ -32,7 +32,7 @@ The environment needs two variables:
 * DT_TOKEN
   * An API token for the environment
 
-![Dynatrace API Postman Collections](pictures/mew-environment.png)
+![Dynatrace API Postman Collections](pictures/new-environment.png)
 
 ## Request away!
 

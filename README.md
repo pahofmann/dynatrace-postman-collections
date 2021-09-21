@@ -27,6 +27,7 @@ The environment needs two variables:
   * URL to the environments
     * For managed: `your-dt-domain.com/e/Environment-ID`
       * `example.com/e/b80b158e-ev23-4330-30fcc-c4391bbx6ce2`
+    * For managed (Cluster API): 
     * For SaaS: `Env-ID.live.dynatrace.com`
       * `abc133769.live.dynatrace.com`
 * DT_TOKEN

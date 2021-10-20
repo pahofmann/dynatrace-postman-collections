@@ -40461,7 +40461,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "https://orp10958.live.dynatrace.com/api/config/v1"
+			"value": "https://{{DT_HOST}}/api/config/v1"
 		}
 	]
 }

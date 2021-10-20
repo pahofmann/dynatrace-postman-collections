@@ -17292,7 +17292,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "https://dynatrace.f-i-ts.de/api/v1.0/onpremise"
+			"value": "https://{{DT_HOST}}/api/v1.0/onpremise"
 		}
 	]
 }

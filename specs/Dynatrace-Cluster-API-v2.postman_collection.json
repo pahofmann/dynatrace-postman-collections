@@ -7911,7 +7911,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "https://dynatrace.f-i-ts.de/api/cluster/v2"
+			"value": "https://{{DT_HOST}}/api/cluster/v2"
 		}
 	]
 }

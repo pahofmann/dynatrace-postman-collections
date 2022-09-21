@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "openapi-to-postmanv2": "^4.2.0"
+  }
+}

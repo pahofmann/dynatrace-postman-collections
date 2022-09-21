@@ -39,3 +39,16 @@ The environment needs two variables:
 
 Now you can open any request and easily execute it against different dynatrace environments by selecting the environment on the top right:
 ![Dynatrace API Postman Collections](pictures/send-request.png)
+
+# Create update for new API version
+
+### Prerequisites
+To make conversion easier I'm using the [postman cli tool](https://github.com/postmanlabs/openapi-to-postman):  
+Install with: `sudo npm install -g openapi-to-postmanv2`
+
+### Conversion
+* Download new spec files from API explorers and copy to `openapi-spec` folder   
+* Run `convert.sh`
+* ???
+* Profit
+	* Files from the `specs` folder can be imported in postman

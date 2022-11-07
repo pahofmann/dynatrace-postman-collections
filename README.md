@@ -8,11 +8,11 @@ The master branch includes the latest version, older versions are available in s
 
 ## Import collections
 Import (`file -> import`) the [collection](https://learning.postman.com/docs/sending-requests/intro-to-collections/) .json file for the APIs you want:  
-* [Environment API v1](specs/environment-v1.json)
-* [Environment API v2](specs/environment-v2.json)
-* [Configuration API](specs/configuration.json)
-* [Cluster API v1](specs/cluster-v1.json)
-* [Cluster API v2](specs/cluster-v2.json)
+* [Environment API v1](https://raw.githubusercontent.com/pahofmann/dynatrace-postman-collections/master/specs/environment-v1.json)
+* [Environment API v2](https://raw.githubusercontent.com/pahofmann/dynatrace-postman-collections/master/specs/environment-v2.json)
+* [Configuration API](https://raw.githubusercontent.com/pahofmann/dynatrace-postman-collections/master/specs/configuration.json)
+* [Cluster API v1](https://raw.githubusercontent.com/pahofmann/dynatrace-postman-collections/master/specs/cluster-v1.json)
+* [Cluster API v2](https://raw.githubusercontent.com/pahofmann/dynatrace-postman-collections/master/specs/cluster-v2.json)
 
 A separate collection will be created for each API:
 ![Dynatrace API Postman Collections](pictures/collections.png)

@@ -25235,7 +25235,7 @@
     ],
     "info": {
         "_postman_id": "b1affeb0-f290-4d34-ace5-1a1a7e159173",
-        "name": "Dynatrace Cluster API",
+        "name": "Dynatrace Cluster API v1",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": {
             "content": "Dynatrace Managed exposes cluster management functionality via REST endpoints. This interactive documentation also acts as a REST client you can use to interact with Dynatrace Managed clusters. \n\nTo authorize, use the API Token generated in [Settings - API Tokens page](/cmc#cm/apiToken). The HTTP status code of the response shows the result of your request. The expected response code for a successful request is documented individually per REST endpoint. Additionally the following error response codes can occur in our REST interface:\n\n* 400 - Bad Request: Some request parameters are not correct. See response body for details.\n* 401 - Unauthorized: A valid authorization header is required but is missing.\n* 403 - Forbidden: Execution of request is not allowed, e.g. api-token is invalid.\n* 404 - Not Found: Endpoint does not exist or some entities could not be found, e.g. User account.\n* 500 - Internal Server Error: See response body for details.\n* 556 - Upgrade in progress: Operation couldn't be performed during the upgrade.\n",

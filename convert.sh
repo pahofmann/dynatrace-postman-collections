@@ -5,7 +5,7 @@ for file in *.json; do
 	sed -e 's/https:\/\/.*\/api\//\https:\/\/{{DT_HOST}}\/api\//g' -i $file
 
 	# Create postman collection
-	openapi2postmanv2 -s $file -o ../specs/$file
+	../node_modules/.bin/openapi2postmanv2 -s $file -o ../specs/$file
 
 	# Replace Authentication
 	sed 's/{{apiKey}}/Api-Token {{DT_TOKEN}}/g' -i ../specs/$file
